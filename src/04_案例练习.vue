@@ -1,8 +1,8 @@
 <template>
   <div>
     <ul>
-      <li class="active">大学起点</li>
-      <li>高中起点</li>
+    <li :class="{'active':index === currentIndex}" v-for="(item,index)in nave" :key="index">大学起点</li>
+      <li @click="changeFn(index)">高中起点</li>
     </ul>
   </div>
 </template>
@@ -12,9 +12,16 @@ export default {
   name: 'VuecliDemo03Class',
 
   data() {
-    return {
-    };
-  },
+        return {
+            navs: ['大学起点', '高中起点', '初中起点', '小学起点'],
+            currentIndex: 0
+        };
+    },
+    methods: {
+        changeFn (index) {
+            this.currentIndex = index;
+        }
+    },
 
   mounted() {
     
