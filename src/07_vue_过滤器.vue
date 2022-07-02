@@ -1,14 +1,6 @@
 <template>
   <div>
-    <!-- 2.过滤器的使用
-      1. 在插值表达式 和  v-bind的表达式里可以用
-      {{ message | 过滤器的名称 }}
-      实现一个把所有字母转换成大写的过滤器
-     -->
-     <p>原来的样子： {{msg}}</p>
-     <p>使用翻转过滤器：{{msg | reverse}}</p>
-     <p :title="msg | toUp">鼠标常停</p>
-      
+    <input type="text" v-model="name">
   </div>
 </template>
 
@@ -16,24 +8,30 @@
 export default {
   data(){
     return {
-      msg: 'Hello, Vue'
+      name: ""
     }
   },
-  // 方式2: 局部 - 过滤器
-  // 只能在当前vue文件内使用
+  // 目标: 侦听到name值的改变
   /*
-     语法: 
-     filters: {
-       过滤器名字 (val) {
-         return 处理后的值
-       }
-     }
+  语法:
+    watch: {
+      变量名 (newVal, oldVal){
+        // 变量名对应值改变这里自动触发
+        // newVal 是改变之后的值
+        // oldVal 是改变之前的值  
+      }
+    }
   */
-  filters: {
-    toUp (val) {
-      return val.toUpperCase()
+  watch: {
+    // newVal: 当前最新值
+    // oldVal: 上一刻值
+    name(newVal, oldVal){
+      console.log(newVal, oldVal);
     }
   }
 }
-
 </script>
+
+<style>
+
+</style>
